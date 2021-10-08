@@ -32,15 +32,12 @@ class App extends React.Component {
         const userRef = await createUserProfileDocument(userAuth);
         //setting the state
         userRef.onSnapshot((snapShot) => {
-          this.setState(
-            {
-              currentUser: {
-                id: snapShot.id,
-                ...snapShot.data(),
-              },
+          this.setState({
+            currentUser: {
+              id: snapShot.id,
+              ...snapShot.data(),
             },
-            () => console.log(this.state)
-          );
+          });
         });
       } else {
         //app need to know if the useAuth is null/if the user logged out
