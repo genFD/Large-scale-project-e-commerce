@@ -2,28 +2,29 @@ import React from 'react'
 import "./sign-up.styles.scss"
 import FormInput from '../form-input/form-input.component'
 import CustomButton from '../custom-button/custom-button.component'
-import {auth} from '../../firebase/firebase.utils'
-// createUserProfileDocument
+import {auth, createUserProfileDocument} from '../../firebase/firebase.utils'
+// 
 class SignUp extends React.Component {
  constructor(){
-  super()
-  this.state= {
-   displayName: '',
-   email: '',
-   password: '',
-   confirmPassword: '',
+   super()
+    this.state= {
+     displayName: '',
+     email: '',
+     password: '',
+     confirmPassword: '',
   }
  }
  handleSubmit = async (e) =>{
   e.preventDefault()
   const {displayName, email, password,confirmPassword } = this.state
   if (password !== confirmPassword){
-   alert("alert password don't match ")
+   alert("alert passwords don't match ")
    return;
   }
   try {
-   const {user } = await auth.createUserWithEmailAndPassword(email, password)
-   // await createUserProfileDocument(user, {displayName})
+   const {user} = await auth.createUserWithEmailAndPassword(email, password)
+   await createUserProfileDocument(user, {displayName})
+  //  clear our form
    this.setState({
     displayName: '',
     email: '',
@@ -82,11 +83,8 @@ class SignUp extends React.Component {
    label='Confirm password'
    required
    />
-   <CustomButton type='button'>SIGN UP</CustomButton>
+   <CustomButton onClick={this.handleSubmit} type='button'>SIGN UP</CustomButton>
   </form>
-
-
-
   </div>
  )
 }
