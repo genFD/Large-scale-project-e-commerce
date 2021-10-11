@@ -6,6 +6,7 @@ import { auth } from "../../firebase/firebase.utils";
 import { connect } from "react-redux"; //hof that lets us modify our comp so that it can have access to things related to redux
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/user/user-reducer";
+import CartIcon from "../cart-icon/cart-icon.component";
 // 
 const Header = ({currentUser})=>{
 // const currentUser = useSelector(selectUser)
@@ -24,6 +25,7 @@ const Header = ({currentUser})=>{
       :
       <Link className='option' to='/signin'>SIGN IN</Link>
     }
+    <CartIcon/>
    </div>
   </div>
  )
