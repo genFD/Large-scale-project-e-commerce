@@ -7,8 +7,9 @@ import { connect } from "react-redux"; //hof that lets us modify our comp so tha
 import { useSelector } from "react-redux";
 import { selectUser } from "../../redux/user/user-reducer";
 import CartIcon from "../cart-icon/cart-icon.component";
+import CartDropdown from "../cart-dropdown/cart-dropdown.component";
 // 
-const Header = ({currentUser})=>{
+const Header = ({currentUser, hidden})=>{
 // const currentUser = useSelector(selectUser)
 // console.log(currentUser);
  return (
@@ -27,13 +28,18 @@ const Header = ({currentUser})=>{
     }
     <CartIcon/>
    </div>
+   {
+     hidden ? null :  <CartDropdown />
+   }
+   
   </div>
  )
 }
 
-const mapStateToProps = state =>{
+const mapStateToProps = ({user:{currentUser}, cart:{hidden}}) =>{
   return {
-    currentUser: state.user.currentUser
+    currentUser,
+    hidden,
   }
 }
 export default connect(mapStateToProps)(Header)
