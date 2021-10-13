@@ -11,8 +11,6 @@ import { selectCartHidden } from "../../redux/cart/cart.selectors";
 import { selectCurrentUser } from "../../redux/user/user.selector";
 // 
 const Header = ({currentUser, hidden})=>{
-// const currentUser = useSelector(selectUser)
-// console.log(currentUser);
  return (
   <div className='header'>
    <Link className='logo-container' to='/'> 
@@ -37,15 +35,8 @@ const Header = ({currentUser, hidden})=>{
  )
 }
 
-// const mapStateToProps = ({user:{currentUser}, cart:{hidden}}) =>{
-//   return {
-//     currentUser,
-//     hidden,
-//   }
-// }
 const mapStateToProps = createStructuredSelector({
     currentUser: selectCurrentUser,
     hidden: selectCartHidden
 })
 export default connect(mapStateToProps)(Header)
-// export default Header 
