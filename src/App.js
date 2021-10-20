@@ -11,7 +11,10 @@ import { connect } from 'react-redux';
 import { setCurrentUser } from './redux/user-action/user-action';
 import { selectCurrentUser } from './redux/user/user.selector';
 import { createStructuredSelector } from 'reselect';
-
+import {
+  selectCollection,
+  selectCollectionForPreview,
+} from './redux/shop/shop.selectors';
 class App extends React.Component {
   unsubscribeFromAuth = null;
   componentDidMount() {
